@@ -19,6 +19,7 @@ class MO(torch.nn.Module):
         self.hop = hop
 
         self.edge_index = edge_index[:,:2]
+        
         self.edge_index = torch.tensor(self.edge_index).t().contiguous().cuda()
         self.edge_index = torch.cat((self.edge_index, self.edge_index[[1,0]]), dim=1)
         self.what_feature = what_feature

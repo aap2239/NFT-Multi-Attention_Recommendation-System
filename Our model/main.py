@@ -12,7 +12,7 @@ from torchcontrib.optim import SWA
 import wandb
 
 from DataLoad import DataLoad
-from Model import MMMO
+from Model_ablation import MO
 # from Compare_Model import MO
 
 class Net:
@@ -79,11 +79,14 @@ class Net:
 
         ###################################### Load model ######################################
         print('Loading model  ...')
-        if self.model_name == 'MMMO':
-            self.features = [self.v_feat, self.t_feat, self.p_feat, self.tr_feat]
-            self.model = MMMO(self.features, self.user_feat, self.edge_index, self.batch_size, self.num_user, self.num_item,
-                               self.reg_parm, self.dim_x, self.attention_dropout, self.hop, self.data_path).cuda()
-        elif self.model_name == 'MO_v':
+        
+        ##################################### REMOVED AS MMMO Model is Not Available ##########################################
+        # if self.model_name == 'MMMO':
+        #     self.features = [self.v_feat, self.t_feat, self.p_feat, self.tr_feat]
+        #     self.model = MMMO(self.features, self.user_feat, self.edge_index, self.batch_size, self.num_user, self.num_item,
+        #                        self.reg_parm, self.dim_x, self.attention_dropout, self.hop, self.data_path).cuda()
+        # elif self.model_name == 'MO_v':
+        if self.model_name == 'MO_v':
             self.features = [self.v_feat, self.t_feat, self.p_feat, self.tr_feat]
             self.model = MO(self.features, self.user_feat, self.edge_index, self.batch_size, self.num_user, self.num_item,
                             self.reg_parm, self.dim_x, self.attention_dropout, self.hop, 'v', self.data_path).cuda()
@@ -209,12 +212,14 @@ class Net:
 if __name__ == '__main__':
 
     import os
+    os.chdir("..")
+    print(os.getcwd())
 
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpu_id', type=int, default=1, help='GPU ID to use.')
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training.')
-    parser.add_argument('--model_name', default='MMMO', help='Model name.')
+    parser.add_argument('--model_name', default='MO_all', help='Model name.')
     parser.add_argument('--collection', default='bayc', help='Collection name.')
     parser.add_argument('--data_path', default='dataset/collections', help='Dataset path')
     parser.add_argument('--PATH_weight_load', default=None, help='Loading weight filename.')
