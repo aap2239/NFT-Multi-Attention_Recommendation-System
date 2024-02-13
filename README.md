@@ -14,6 +14,8 @@ Explore our [Data Description](Data_Description.md) for detailed data informatio
 
 1. Install Python 3.10.9. The required packages are as follows:
 ```
+DEPRECATED. DO NOT USE WITH CUDA 12.1
+
 numpy==1.25.0
 pandas==2.0.3
 scikit-learn==1.2.2
@@ -25,6 +27,13 @@ torch-scatter==2.1.1
 torch-sparse==0.6.17
 torch-spline-conv==1.2.2
 torchcontrib==0.0.2
+```
+
+Installed Packages using (My CUDA Version is 12.1): 
+```
+pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu121
+pip install numpy pandas scikit-learn torchcontrib matplotlib wandb 
+pip install torch_scatter==2.1.2+pt21cu121 torch_sparse==0.6.18+pt21cu121 torch_cluster==1.6.3+pt21cu121 torch_spline_conv==1.2.2+pt21cu121 torch_geometric -f https://pytorch-geometric.com/whl/torch-2.1.1+cu121.html
 ```
 
 
